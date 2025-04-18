@@ -39,3 +39,6 @@ build/
 
 ### Data ###
 configuration.properties
+
+allure-results/
+.allure/
