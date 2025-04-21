@@ -1,6 +1,6 @@
 package com.demowebshop.ui.pages.auth;
 
-import org.junit.jupiter.api.Assertions;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,10 +44,10 @@ public class LoginPage {
     }
 
     public void validateLoginUnsuccessfulMessage(String expectedMessage){
-        Assertions.assertEquals(expectedMessage, loginErrorMessage.getText());
+        Assert.assertEquals(loginErrorMessage.getText(), expectedMessage);
     }
     public void validateInvalidEmailMessage(String expectedMessage){
-        Assertions.assertEquals(expectedMessage, wait.until(ExpectedConditions.visibilityOf(invalidEmailMessage)).getText());
+        Assert.assertEquals(wait.until(ExpectedConditions.visibilityOf(invalidEmailMessage)).getText(), expectedMessage);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.demowebshop.ui.pages.catalog;
 
-import org.junit.jupiter.api.Assertions;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +17,7 @@ public class HomePage {
 
     public void validateProfileInfo(String expectedTitle){
 
-        Assertions.assertEquals(expectedTitle, profileInfo.getText());
+        Assert.assertEquals(profileInfo.getText(), expectedTitle);
     }
 
 }

@@ -3,6 +3,7 @@ package com.demowebshop.ui.stepdefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
+import utils.AllureUtils;
 import utils.ConfigReader;
 import utils.DriverHelper;
 
@@ -17,6 +18,7 @@ public class Hook {
 
     @After
     public void tearDown() {
+        AllureUtils.takeScreenshot(driver);
         DriverHelper.quitDriver();
     }
 
