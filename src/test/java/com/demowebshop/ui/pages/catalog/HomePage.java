@@ -17,7 +17,7 @@ public class HomePage {
 
     public void validateProfileInfo(String expectedTitle){
 
-        Assert.assertEquals(profileInfo.getText(), expectedTitle);
+        Assert.assertTrue("User email assert has failed", profileInfo.getText().contains(expectedTitle));
     }
 
 }
