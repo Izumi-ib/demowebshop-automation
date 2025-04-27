@@ -1,14 +1,12 @@
 package com.demowebshop.ui.actions.authActions;
 
 import com.demowebshop.ui.pages.auth.LoginPage;
-
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.AllureUtils;
 import utils.ConfigReader;
-
 
 public class LoginActions {
     private WebDriver driver;
@@ -22,46 +20,31 @@ public class LoginActions {
 
     @Step("Navigating to login page")
     public void navigateToLoginPage() {
-        String msg = "Navigating to login page";
-        logger.info(msg);
-        AllureUtils.attachLog(msg);
-
+        AllureUtils.log(logger, "Navigating to login page");
         driver.get(ConfigReader.readProperty("baseUrl") + "login");
     }
 
     @Step("Entering email {0} and password {1}")
     public void enterCredentials(String email, String password) {
-        logger.info("Entering login credentials: Email = '{}', Password = '{}'", email, password); // Лог в консоли
-        AllureUtils.attachLog("Entered login credentials: Email = '" + email + "', Password = '" + password + "'"); // Лог в отчете Allure
-
+        AllureUtils.log(logger, "Entered login credentials: Email = '%s', Password = '%s'", email, password);
         loginPage.enterLoginCredentials(email, password, true);
     }
 
     @Step("Clicking login button")
-    public void clickLoginButton(){
-        String msg = "Clicking the login button to submit the credentials";
-        logger.info(msg);
-        AllureUtils.attachLog(msg);
-
+    public void clickLoginButton() {
+        AllureUtils.log(logger, "Clicking the login button to submit the credentials");
         loginPage.clickLoginButton();
     }
 
     @Step("Validating login error message")
     public void validateLoginErrorMessage(String expectedMessage) {
-        String msg = "Validating the login error message: " + expectedMessage;
-        logger.info(msg);
-        AllureUtils.attachLog(msg);
-
+        AllureUtils.log(logger, "Validating the login error message: %s", expectedMessage);
         loginPage.validateLoginUnsuccessfulMessage(expectedMessage);
     }
 
-
-    public void validateInvalidEmailErrorMessage(String expectedMessage){
-        String msg = "Validating invalid email error message: " + expectedMessage;
-        logger.info(msg);
-        AllureUtils.attachLog(msg);
-
+    @Step("Validating invalid email error message")
+    public void validateInvalidEmailErrorMessage(String expectedMessage) {
+        AllureUtils.log(logger, "Validating invalid email error message: %s", expectedMessage);
         loginPage.validateInvalidEmailMessage(expectedMessage);
     }
-
 }
