@@ -3,6 +3,7 @@ package com.demowebshop.ui.stepdefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import org.junit.AfterClass;
 import org.openqa.selenium.WebDriver;
 import utils.AllureUtils;
 import utils.ConfigReader;
