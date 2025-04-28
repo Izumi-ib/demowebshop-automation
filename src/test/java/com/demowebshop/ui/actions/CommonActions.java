@@ -1,4 +1,4 @@
-package com.demowebshop.ui.stepdefinitions;
+package com.demowebshop.ui.actions;
 
 import com.demowebshop.ui.actions.authActions.LoginActions;
 import com.demowebshop.ui.pages.auth.LoginPage;

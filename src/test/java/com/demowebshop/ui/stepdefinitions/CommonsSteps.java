@@ -1,13 +1,10 @@
 package com.demowebshop.ui.stepdefinitions;
 
 
-import com.demowebshop.ui.pages.catalog.HomePage;
+import com.demowebshop.ui.actions.CommonActions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import utils.DriverHelper;
 
 public class CommonsSteps {

@@ -23,7 +23,7 @@ public class Hook {
             if (scenario.isFailed()) {
                 AllureUtils.takeScreenshot(driver);
             }
-        DriverHelper.quitDriver();
+//        DriverHelper.quitDriver();
     }
 
 }
