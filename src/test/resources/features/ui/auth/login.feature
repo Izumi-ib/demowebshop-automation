@@ -2,7 +2,7 @@
 Feature: User login feature
 
   Background:
-    Given the user is on the login page
+    Given the user is on 'login' page
 
   @TC_201
   Scenario: User logs in with valid credentials (TC_201)

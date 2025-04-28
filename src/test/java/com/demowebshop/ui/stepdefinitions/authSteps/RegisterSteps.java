@@ -15,11 +15,6 @@ public class RegisterSteps {
     WebDriver driver = DriverHelper.getDriver();
     RegisterActions registerActions = new RegisterActions(driver);
 
-    @Given("the user is on the registration page")
-    public void the_user_is_on_the_registration_page() {
-        registerActions.navigateToRegisterPage();
-    }
-
     @When("the user enters personal details {string}, {string}, {string} and {string}")
     public void the_user_enters_personal_details_and(String gender, String firstName, String lastName, String email) {
         registerActions.enterPersonalDetails(gender, firstName, lastName, email);
