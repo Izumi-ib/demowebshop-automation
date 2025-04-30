@@ -20,16 +20,42 @@ public class ShoppingCartPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//")
-    WebElement sda;
+    @FindBy(xpath = "//input[@name='removefromcart']")
+    WebElement removeFromCartButton;
+    @FindBy(xpath = "//tr[@class='cart-item-row']")
+    WebElement productBlock;
+    @FindBy(xpath = "//input[@name='updatecart']")
+    WebElement updateCartButton;
+    @FindBy(xpath = "//div[contains(text(), 'Your Shopping')]")
+    WebElement cartIsEmptyMessage;
 
     public void verifyProductIsAdded(String expectedProductTitle) {
         WebElement productBlock = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//tr[@class='cart-item-row'][.//a[.='" + expectedProductTitle + "']]")
+                By.xpath("//tr[@class='cart-item-row']")
         ));
 
-        Assert.assertEquals(expectedProductTitle, productBlock.getText());
+        WebElement productTitle = productBlock.findElement(By.xpath(".//a[.='" + expectedProductTitle + "']"));
+
+        Assert.assertEquals(expectedProductTitle, productTitle.getText());
     }
 
+    public void clickRemoveCheckBox(String expectedProductTitle){
+        WebElement productTitle = productBlock.findElement(By.xpath(".//a[.='" + expectedProductTitle + "']"));
+        WebElement removeButton = productTitle.findElement(By.xpath("//input[@name='removefromcart']"));
+
+        wait.until(ExpectedConditions.elementToBeClickable(removeButton)).click();
+    }
+
+    public void clickButtonInShoppingCart(String buttonName){
+        switch (buttonName){
+            case "Update shopping cart":
+                updateCartButton.click();
+
+        }
+    }
+
+    public void validateCartIsEmptyMessage(String expectedMessage){
+        Assert.assertEquals(expectedMessage, cartIsEmptyMessage.getText());
+    }
 
 }

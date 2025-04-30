@@ -18,11 +18,15 @@ public class DriverHelper {
             WebDriverManager.chromedriver().setup();
 
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--start-minimized");
+//            options.addArguments("--headless=new");
+//            options.addArguments("--disable-gpu");
+//            options.addArguments("--window-size=1920,1080");
+//            options.addArguments("--no-sandbox");
+//            options.addArguments("--disable-dev-shm-usage");
 
             driver = new ChromeDriver(options);
         }
-//        driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().deleteAllCookies();
         return driver;

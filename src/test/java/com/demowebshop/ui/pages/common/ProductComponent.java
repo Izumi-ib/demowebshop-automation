@@ -1,5 +1,6 @@
 package com.demowebshop.ui.pages.common;
 
+import com.demowebshop.ui.pages.cart.ShoppingCartPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,11 +14,11 @@ import java.time.Duration;
 
 public class ProductComponent {
     private final WebDriverWait wait;
+    ShoppingCartPage shoppingCartPage;
 
     public ProductComponent(WebDriver driver) {
-
         PageFactory.initElements(driver, this);
-
+        shoppingCartPage = new ShoppingCartPage(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
@@ -25,13 +26,20 @@ public class ProductComponent {
     WebElement productAddedBarMessage;
 
     public void clickOnProduct(String buttonName, String productName) {
-        WebElement productBlock = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[@class='product-item'][.//a[contains(text(), '" + productName + "')]]")
-        ));
+        switch (buttonName){
+            case "Add to cart":
+                WebElement productBlock = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//div[@class='product-item'][.//a[contains(text(), '" + productName + "')]]")
+                ));
 
-        WebElement productButton = productBlock.findElement(By.xpath(".//input[@value='" + buttonName + "']"));
+                WebElement productButton = productBlock.findElement(By.xpath(".//input[@value='" + buttonName + "']"));
 
-        wait.until(ExpectedConditions.elementToBeClickable(productButton)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(productButton)).click();
+                break;
+            case "Remove from cart":
+                shoppingCartPage.clickRemoveCheckBox(productName);
+                break;
+        }
     }
 
     public void validateProductAddedMessage(String expectedMessage) {

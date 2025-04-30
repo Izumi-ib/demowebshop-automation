@@ -9,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.AllureUtils;
-import utils.ConfigReader;
 
 public class CartActions {
     private final ShoppingCartPage shoppingCartPage;
@@ -23,6 +22,7 @@ public class CartActions {
 
     @Step("User clicks on {buttonName} button for product with name {productName}")
     public void clickOnProduct(String buttonName, String productName) {
+        AllureUtils.log(logger, "Clicking on " + buttonName + " button for product with name " + productName + "");
         productComponent.clickOnProduct(buttonName, productName);
     }
 
@@ -36,6 +36,22 @@ public class CartActions {
     public void verifyTheProductIsAddedToCart(String expectedProductTitle) {
         AllureUtils.log(logger, "Verifying that the product with name " + expectedProductTitle + " was added to cart");
         shoppingCartPage.verifyProductIsAdded(expectedProductTitle);
+    }
+
+    @Step("User clicks on {buttonName} button in shopping page")
+    public void clickButtonInShoppingPage(String buttonName) {
+        AllureUtils.log(logger, "Clicking on " + buttonName + " button in shopping page");
+        shoppingCartPage.clickButtonInShoppingCart(buttonName);
+    }
+
+    @Step("User should see {expectedMessage}")
+    public void verifyMessageInShoppingCart(String expectedMessage) {
+        AllureUtils.log(logger, "Validating " + expectedMessage + " message in Shopping cart");
+        switch (expectedMessage) {
+            case "Your Shopping Cart is empty!":
+                shoppingCartPage.validateCartIsEmptyMessage(expectedMessage);
+        }
+
     }
 
 }

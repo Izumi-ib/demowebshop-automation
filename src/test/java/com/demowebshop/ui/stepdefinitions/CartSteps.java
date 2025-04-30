@@ -14,13 +14,23 @@ public class CartSteps {
         cartActions.clickOnProduct(buttonName, productName);
     }
 
+    @When("the user clicks on {string} button in shopping page")
+    public void the_user_clicks_on_button(String buttonName) {
+        cartActions.clickButtonInShoppingPage(buttonName);
+    }
+
+    @Then("the user should see {string} message in shopping cart")
+    public void the_user_should_see_message_in_shopping_cart(String expectedMessage) {
+        cartActions.verifyMessageInShoppingCart(expectedMessage);
+    }
+
     @Then("the user should see {string} on the top")
     public void the_user_should_see_on_the_top(String expectedMessage) {
         cartActions.validateProductAddedMessage(expectedMessage);
     }
 
     @Then("the user verifies the product with name {string} was added to the cart")
-    public void the_user_verifies_the_product_with_name_was_added_to_the_cart(String expectedProductTitle){
+    public void the_user_verifies_the_product_with_name_was_added_to_the_cart(String expectedProductTitle) {
         cartActions.verifyTheProductIsAddedToCart(expectedProductTitle);
     }
 

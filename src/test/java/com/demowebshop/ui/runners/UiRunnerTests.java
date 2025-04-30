@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
         dryRun = false,
         tags = "@ui",
         plugin = {
+                "pretty",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         }
 )
