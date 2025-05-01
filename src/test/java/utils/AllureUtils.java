@@ -27,6 +27,10 @@ public class AllureUtils {
     }
 
     private static void attachLog(String message) {
-        Allure.addAttachment("Log", message);
+        try {
+            Allure.getLifecycle().addAttachment("Log", "text/plain", ".txt", message.getBytes());
+        } catch (Exception e) {
+            System.err.println("Allure attachment failed: " + e.getMessage());
+        }
     }
 }

@@ -9,8 +9,9 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/ui",
         glue = "com/demowebshop/ui/stepdefinitions",
         dryRun = false,
-        tags = "@ui",
+        tags = "@TC_303",
         plugin = {
+                "pretty",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         }
 )

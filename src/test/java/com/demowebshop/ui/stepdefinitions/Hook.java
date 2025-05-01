@@ -14,7 +14,7 @@ public class Hook {
     WebDriver driver = DriverHelper.getDriver();
 
     @Before
-    public void setUp() {
+    public void setUp(Scenario scenario) {
         driver.get(ConfigReader.readProperty("baseUrl"));
     }
 

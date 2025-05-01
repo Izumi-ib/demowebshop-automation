@@ -2,7 +2,7 @@
 Feature: User registration feature
 
   Background:
-    Given the user is on the registration page
+    Given the user is on 'register' page
 
   @TC_101
   Scenario: User registers with valid credentials (TC_101)

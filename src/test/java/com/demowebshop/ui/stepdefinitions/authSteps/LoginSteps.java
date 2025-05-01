@@ -9,11 +9,6 @@ import utils.DriverHelper;
 public class LoginSteps {
     private final LoginActions loginActions = new LoginActions(DriverHelper.getDriver());
 
-    @Given("the user is on the login page")
-    public void the_user_is_on_the_login_page() {
-        loginActions.navigateToLoginPage();
-    }
-
     @When("the user enters email {string} and password {string} to log in")
     public void the_user_enters_email_and_password_to_log_in(String email, String password) {
         loginActions.enterCredentials(email, password);
