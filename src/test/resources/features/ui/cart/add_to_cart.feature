@@ -37,7 +37,7 @@ Feature: User adds products to cart feature
       | TCP Public MT/AT            |
     Then the user should see 'The product has been added to your shopping cart' on the top
     And the user is on 'cart' page
-#    Then the user should see '12828.00' total price
+#    Then the user should see the total price as '{string}'
 
   @TC_304
   Scenario: User verifies cart quantity update
@@ -45,8 +45,8 @@ Feature: User adds products to cart feature
     When the user clicks on 'Add to cart' button for product with name '14.1-inch Laptop'
     Then the user should see 'The product has been added to your shopping cart' on the top
     When the user is on 'cart' page
-    And the user change quantity for the with name product '14.1-inch Laptop'
-
+    And the user change quantity '' for the with name product '14.1-inch Laptop'
+    Then the user should see the total price as '{string}'
 
 
 

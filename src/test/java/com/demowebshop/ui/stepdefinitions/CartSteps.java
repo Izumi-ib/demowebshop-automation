@@ -49,4 +49,16 @@ public class CartSteps {
         cartActions.verifyTotalPriceOfProducts(expectedPrice);
     }
 
+    @When("the user change quantity {string} for the with name product {string}")
+    public void the_user_change_quantity_for_the_with_name_product(String string, String string2) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("the user should see the total price as {string}")
+    public void the_user_should_see_the_total_price_as(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
 }
