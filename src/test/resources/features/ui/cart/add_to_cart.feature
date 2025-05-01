@@ -1,10 +1,8 @@
 Feature: User adds products to cart feature
 
-  Background:
-    Given the user is on '' page
-
   @TC_301
   Scenario Outline: User adds a product to cart (TC_301)
+    Given the user is on '' page
     When the user clicks on 'Add to cart' button for product with name '<productTitle>'
     Then the user should see 'The product has been added to your shopping cart' on the top
     When the user is on 'cart' page
@@ -16,6 +14,7 @@ Feature: User adds products to cart feature
 
   @TC_302
   Scenario Outline: User removes product from cart (TC_302)
+    Given the user is on '' page
     When the user clicks on 'Add to cart' button for product with name '<productTitle>'
     Then the user should see 'The product has been added to your shopping cart' on the top
     When the user is on 'cart' page
@@ -30,3 +29,25 @@ Feature: User adds products to cart feature
 
   @TC_303
   Scenario: User adds multiple product to cart and verifies its total
+    Given the user is on 'accessories' page
+    When the user clicks on 'Add to card' button and adds following products to cart:
+      | productTitle                |
+      | TCP Instructor Led Training |
+      | TCP Public Complete         |
+      | TCP Public MT/AT            |
+    Then the user should see 'The product has been added to your shopping cart' on the top
+    And the user is on 'cart' page
+#    Then the user should see '12828.00' total price
+
+  @TC_304
+  Scenario: User verifies cart quantity update
+    Given the user is on '' page
+    When the user clicks on 'Add to cart' button for product with name '14.1-inch Laptop'
+    Then the user should see 'The product has been added to your shopping cart' on the top
+    When the user is on 'cart' page
+    And the user change quantity for the with name product '14.1-inch Laptop'
+
+
+
+
+

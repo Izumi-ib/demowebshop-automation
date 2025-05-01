@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class ShoppingCartPage {
     WebDriverWait wait;
@@ -28,6 +29,11 @@ public class ShoppingCartPage {
     WebElement updateCartButton;
     @FindBy(xpath = "//div[contains(text(), 'Your Shopping')]")
     WebElement cartIsEmptyMessage;
+    @FindBy(xpath = "//span[@class='product-price order-total']")
+    WebElement totalPrice;
+    @FindBy(xpath = "//span[@class='product-subtotal']")
+    List<WebElement> subTotalPrices;
+
 
     public void verifyProductIsAdded(String expectedProductTitle) {
         WebElement productBlock = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -50,12 +56,19 @@ public class ShoppingCartPage {
         switch (buttonName){
             case "Update shopping cart":
                 updateCartButton.click();
-
         }
     }
 
     public void validateCartIsEmptyMessage(String expectedMessage){
         Assert.assertEquals(expectedMessage, cartIsEmptyMessage.getText());
+    }
+
+    public void getTotalPrice(Double expectedTotalPrice){
+        Double actualTotalPrice = 0.0;
+        for(WebElement price : subTotalPrices){
+             actualTotalPrice += Double.parseDouble(price.getText());
+        }
+        Assert.assertEquals(expectedTotalPrice, actualTotalPrice);
     }
 
 }

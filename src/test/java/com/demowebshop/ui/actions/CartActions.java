@@ -4,11 +4,15 @@ import com.demowebshop.ui.actions.authActions.LoginActions;
 import com.demowebshop.ui.pages.auth.LoginPage;
 import com.demowebshop.ui.pages.cart.ShoppingCartPage;
 import com.demowebshop.ui.pages.common.ProductComponent;
+import io.cucumber.java.eo.Do;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.AllureUtils;
+
+import java.util.List;
+import java.util.Map;
 
 public class CartActions {
     private final ShoppingCartPage shoppingCartPage;
@@ -51,7 +55,26 @@ public class CartActions {
             case "Your Shopping Cart is empty!":
                 shoppingCartPage.validateCartIsEmptyMessage(expectedMessage);
         }
-
     }
+
+
+    @Step("User clicks {buttonName} and adds following products:")
+    public void clickButtonAndAddProducts(String buttonName, List<Map<String, String>> products) {
+        for (Map<String, String> row : products) {
+            String productTitle = row.get("productTitle");
+
+            AllureUtils.log(logger, "User adds following product " + productTitle + " to cart");
+            productComponent.clickOnProduct(buttonName, productTitle);
+        }
+    }
+
+    @Step("User should see total price:{expectedTotalPrice} of the products")
+    public void verifyTotalPriceOfProducts(String expectedPrice) {
+        double expectedTotalPrice = Double.parseDouble(expectedPrice);
+
+        AllureUtils.log(logger, "User should see total price:" + expectedTotalPrice + "of the products");
+        shoppingCartPage.getTotalPrice(expectedTotalPrice);
+    }
+
 
 }

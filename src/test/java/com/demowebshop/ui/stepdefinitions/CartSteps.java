@@ -6,6 +6,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import utils.DriverHelper;
 
+import java.util.List;
+import java.util.Map;
+
 public class CartSteps {
     private final static CartActions cartActions = new CartActions(DriverHelper.getDriver());
 
@@ -32,6 +35,18 @@ public class CartSteps {
     @Then("the user verifies the product with name {string} was added to the cart")
     public void the_user_verifies_the_product_with_name_was_added_to_the_cart(String expectedProductTitle) {
         cartActions.verifyTheProductIsAddedToCart(expectedProductTitle);
+    }
+
+    @When("the user clicks on {string} button and adds following products to cart:")
+    public void the_user_clicks_on_button_and_adds_following_products_to_cart(String buttonName, io.cucumber.datatable.DataTable dataTable) {
+        List<Map<String, String>> products = dataTable.asMaps(String.class, String.class);
+
+        cartActions.clickButtonAndAddProducts(buttonName, products);
+    }
+
+    @Then("the user should see {string} total price")
+    public void the_user_should_see_total_price(String expectedPrice) {
+        cartActions.verifyTotalPriceOfProducts(expectedPrice);
     }
 
 }
